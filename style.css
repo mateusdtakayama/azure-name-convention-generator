@@ -1,0 +1,12 @@
+#businessUnitRow {
+    display: none;
+}
+
+#environmentRow {
+    display: none;
+}
+
+.toast-container {
+    z-index: 10000;
+    max-width: 350px; 
+}
