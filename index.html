@@ -46,6 +46,22 @@
             <label class="form-check-label">Abreviar</label>
           </div>
         </div>
+        <div class="div mb-3" id="purposeRow">
+          <label class="form-label">Finalidade:</label>
+          <input class="form-control" id="purposeInput">
+          <div class="mt-2">
+            <input type="checkbox" class="form-check-input" id="checkPurpose">
+            <label class="form-check-label">Abreviar</label>
+          </div>
+        </div>
+        <div class="div mb-3" id="numberRow">
+          <label class="form-label">Número:</label>
+          <input class="form-control" id="numberInput">
+          <div class="mt-2">
+            <input type="checkbox" class="form-check-input" id="checkNumber">
+            <label class="form-check-label">Abreviar</label>
+          </div>
+        </div>
         <!-- Button trigger modal -->
         <button onclick="generateName()" type="button" class="btn btn-primary" data-bs-target="#staticBackdrop">
           Gerar
@@ -92,6 +108,17 @@
         </div>
     
         <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toastCopyErrorManagementGroup">
+          <div class="toast-header">
+            <img class="rounded me-2">
+            <strong class="me-auto"> &#128308; Erro</strong>
+            <small>just now</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          </div>
+          <div class="toast-body">
+            Setor ou Ambiente estão vazios, verifique!
+          </div>
+        </div>
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" id="toastCopyErrorSubscription">
           <div class="toast-header">
             <img class="rounded me-2">
             <strong class="me-auto"> &#128308; Erro</strong>

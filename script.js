@@ -2,13 +2,21 @@ document.getElementById("assetTypeInput").addEventListener("input", function() {
     let assetType = this.value.toLowerCase();
     let businessUnitRow = document.getElementById("businessUnitRow");
     let environmentRow = document.getElementById("environmentRow");
+    let purposeRow = document.getElementById("purposeRow");
+    let numberRow = document.getElementById("numberRow");
 
     if (assetType === "management group") {
       businessUnitRow.style.display = "block";
       environmentRow.style.display = "block";
+    } else if (assetType === "subscription"){
+      businessUnitRow.style.display = "block";
+      purposeRow.style.display = "block";
+      numberRow.style.display = "block";
     } else {
       businessUnitRow.style.display = "none";
       environmentRow.style.display = "none";
+      purposeRow.style.display = "none";
+      numberRow.style.display = "none";
     }
   });
 
@@ -57,7 +65,8 @@ document.getElementById("assetTypeInput").addEventListener("input", function() {
 
     if (assetType === "management group") {
       generateManagementGroup()
-    } else {
+    } else if (assetType === "subscription") {
+      generateSubscription()
     }
   }
 
@@ -96,6 +105,49 @@ document.getElementById("assetTypeInput").addEventListener("input", function() {
       }
   }
 
+  function generateSubscription() {
+    let areaInput = document.getElementById("businessUnit").value;
+    let checkArea = document.getElementById("checkBusinessUnit");
+    let purposeInput = document.getElementById("purposeInput").value;
+    let checkPurpose = document.getElementById("checkPurpose");
+    let numberInput = document.getElementById("numberInput").value;
+    let checkNumber = document.getElementById("checkNumber");
+    let areaString
+    let purposeString
+    let numberString
+
+    if (checkArea.checked) {
+      areaString = abbreviateWord(areaInput);
+    } else {
+      areaString = areaInput
+    }
+    if (checkPurpose.checked) {
+      purposeString = abbreviateWord(purposeInput);
+    } else {
+      purposeString = purposeInput
+    }
+    if (checkNumber.checked) {
+      numberString = abbreviateWord(numberInput);
+    } else {
+      numberString = numberInput
+    }
+
+    if (areaString) {
+      let subscription = areaString + "-" + purposeString + "-" + numberString
+      let modalBody = document.querySelector(".name-results");
+
+      modalBody.textContent = subscription
+      openModalNameGenerated()
+      const toastElement  = document.getElementById('toastCopySucess'); 
+      let toast = new bootstrap.Toast(toastElement);
+      toast.show()
+    } else {
+      const toastElement  = document.getElementById('toastCopyErrorSubscription'); 
+      let toast = new bootstrap.Toast(toastElement);
+      toast.show()
+    }
+}
+
   function copyResults() {
     let modalBodyText = document.querySelector(".name-results").textContent;
 
@@ -113,6 +165,8 @@ document.getElementById("assetTypeInput").addEventListener("input", function() {
     document.getElementById("assetTypeInput").value = "";
     document.getElementById("businessUnit").value = "";
     document.getElementById("environmentInput").value = "";
+    document.getElementById("purposeInput").value = "";
+    document.getElementById("numberInput").value = "";
 
     let modalBody = document.querySelector(".name-results");
 
@@ -120,6 +174,8 @@ document.getElementById("assetTypeInput").addEventListener("input", function() {
 
     businessUnitRow.style.display = "none";
     environmentRow.style.display = "none";
+    purposeRow.style.display = "none";
+    numberRow.style.display = "none";
   }
 
   function openModalNameGenerated() {
